@@ -15,7 +15,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .fetch_all(&pool)
         .await?;
     
-    // Path for the Excel file
+   
     let file_path = "D:/Devilal/employees.xlsx";
 
     // Create an Excel workbook & worksheet
@@ -24,14 +24,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Write header row
     sheet.write_string(0, 0, "MasterKey", None)?;
-   // sheet.write_string(0, 1, "Name", None)?;
-   // sheet.write_string(0, 2, "Age", None)?;
+
 
     // Write data rows
     for (i, row) in rows.iter().enumerate() {
-        sheet.write_number(i as u32 + 1, 0, row.id as f64, None)?;
-        sheet.write_string(i as u32 + 1, 1, &row.name, None)?;
-        sheet.write_number(i as u32 + 1, 2, row.age as f64, None)?;
+        sheet.write_string(i as u32 + 1, 1, &row.masterkey, None)?;
     }
 
     // Save and close the workbook
